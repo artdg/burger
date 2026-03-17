@@ -44,12 +44,20 @@
   const rub = (value) => new Intl.NumberFormat("ru-RU").format(value);
 
   const fetchMenu = async () => {
-    const res = await fetch(MENU_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error("Menu fetch failed");
-    const data = await res.json();
-    const items = Array.isArray(data.items) ? data.items : [];
-    const map = new Map(items.map((it) => [it.id, it]));
-    return { items, map };
+    try {
+      const res = await fetch(MENU_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error(`Menu fetch failed: ${res.status}`);
+      const data = await res.json();
+      const items = Array.isArray(data.items) ? data.items : [];
+      const map = new Map(items.map((it) => [it.id, it]));
+      return { items, map };
+    } catch (e) {
+      const fallback = globalThis.__MENU__;
+      const items = Array.isArray(fallback?.items) ? fallback.items : [];
+      if (items.length === 0) throw e;
+      const map = new Map(items.map((it) => [it.id, it]));
+      return { items, map };
+    }
   };
 
   const CATEGORY_LABELS = {
