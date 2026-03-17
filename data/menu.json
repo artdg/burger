@@ -1,0 +1,60 @@
+{
+  "currency": "RUB",
+  "items": [
+    {
+      "id": "burger-classic",
+      "title": "Классический бургер",
+      "category": "burgers",
+      "description": "Сочная котлета, свежие овощи и фирменный соус.",
+      "image": "img/burgers.png",
+      "price": 289,
+      "weightG": 320
+    },
+    {
+      "id": "burger-cheese",
+      "title": "Чизбургер",
+      "category": "burgers",
+      "description": "Больше сыра — больше удовольствия.",
+      "image": "img/burgers.png",
+      "price": 319,
+      "weightG": 310
+    },
+    {
+      "id": "snack-fries",
+      "title": "Картофель фри",
+      "category": "snacks",
+      "description": "Хрустящий картофель с солью. Идеально к бургеру.",
+      "image": "img/snacks.png",
+      "price": 149,
+      "weightG": 150
+    },
+    {
+      "id": "salad-caesar",
+      "title": "Цезарь",
+      "category": "salads",
+      "description": "Классика с курицей, соусом и хрустящими гренками.",
+      "image": "img/salads.png",
+      "price": 259,
+      "weightG": 220
+    },
+    {
+      "id": "dessert-cheesecake",
+      "title": "Чизкейк",
+      "category": "desserts",
+      "description": "Нежный десерт к кофе или чаю.",
+      "image": "img/deserts.png",
+      "price": 199,
+      "weightG": 140
+    },
+    {
+      "id": "hot-nuggets",
+      "title": "Наггетсы",
+      "category": "hot",
+      "description": "Сочные кусочки курицы в хрустящей панировке.",
+      "image": "img/chicken_dishes.png",
+      "price": 189,
+      "weightG": 180
+    }
+  ]
+}
+

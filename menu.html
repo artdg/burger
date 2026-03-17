@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Меню бургерной Vintage Food: бургеры, закуски, салаты и десерты.">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Меню — Vintage Food</title>
+</head>
+<body>
+    <a class="skip_link" href="#main">Перейти к содержимому</a>
+    <header class="page_header" id="page_header">
+        <nav class="navigation container">
+            <a href="index.html" class="logo_link" aria-label="На главную">
+                <img src="img/logo.png" alt="Vintage Food" class="logo" width="120" height="120">
+            </a>
+            <ul class="navigation_list">
+                <li><a href="index.html" class="navigation_title_header">Главная</a></li>
+                <li><a href="menu.html" class="navigation_title_header" aria-current="page">Меню</a></li>
+                <li><a href="promos.html" class="navigation_title_header">Акции</a></li>
+                <li><a href="about.html" class="navigation_title_header">О нас</a></li>
+            </ul>
+            <a class="navigation_button navigation_button_link" href="cart.html" aria-label="Перейти в корзину">
+                <img src="img/basket.png" alt="" class="nav_menu_basket_img" width="34" height="34">
+                <span class="cart_badge" data-cart-count hidden>0</span>
+            </a>
+        </nav>
+        <div class="container container_page_header">
+            <div class="hero_text">
+                <p class="eyebrow">Меню</p>
+                <h1 class="hero_title">Выбери, что хочется</h1>
+                <p class="text_header_discount">Добавляй позиции в корзину — заказ оформим на странице checkout.</p>
+            </div>
+            <div class="hero_media" aria-hidden="true">
+                <img src="img/burger.png" alt="" width="642" height="600" loading="eager">
+            </div>
+        </div>
+    </header>
+
+    <main class="page_main" id="main">
+        <section class="container section" aria-labelledby="menu_title">
+            <h2 class="section_title" id="menu_title">Категории</h2>
+            <ul class="catalog_list">
+                <li class="catalog_item">
+                    <img src="img/burgers.png" alt="Бургеры" loading="lazy">
+                    <p class="catalog_text">Бургеры</p>
+                </li>
+                <li class="catalog_item">
+                    <img src="img/chicken_dishes.png" alt="Блюда из курицы" loading="lazy">
+                    <p class="catalog_text">Блюда из курицы</p>
+                </li>
+                <li class="catalog_item">
+                    <img src="img/hot_dishes.png" alt="Горячие блюда" loading="lazy">
+                    <p class="catalog_text">Горячие блюда</p>
+                </li>
+                <li class="catalog_item">
+                    <img src="img/snacks.png" alt="Закуски" loading="lazy">
+                    <p class="catalog_text">Закуски</p>
+                </li>
+                <li class="catalog_item">
+                    <img src="img/salads.png" alt="Салаты" loading="lazy">
+                    <p class="catalog_text">Салаты</p>
+                </li>
+                <li class="catalog_item">
+                    <img src="img/deserts.png" alt="Десерты" loading="lazy">
+                    <p class="catalog_text">Десерты</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="container section" aria-labelledby="popular_title">
+            <h2 class="section_title" id="popular_title">Популярное</h2>
+            <div class="products_grid" data-products>
+                <!-- будет заполнено JS (data/menu.json) -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="page_footer">
+        <div class="container footer_container">
+            <ul class="footer_list" aria-label="Полезные ссылки">
+                <li><a href="#" class="footer_title">Программа лояльности</a></li>
+                <li><a href="#" class="footer_title">Политика конфиденциальности</a></li>
+                <li><a href="#" class="footer_title">Договор оферты</a></li>
+            </ul>
+            <ul class="footer_page_text">
+                <li><p>ООО "Vintage Food"</p></li>
+                <li><p>&copy; Все права защищены.</p></li>
+            </ul>
+            <ul class="footer_contacts" aria-label="Соцсети">
+                <li>
+                    <a class="social_link" href="https://vk.com/gr1b_ok" target="_blank" rel="noopener noreferrer" aria-label="VK">
+                        <img src="img/vk.png" alt="" width="50" height="50" class="footer_images" loading="lazy">
+                    </a>
+                </li>
+                <li>
+                    <a class="social_link" href="https://telegram.com/artdg0" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                        <img src="img/telegram.png" alt="" width="60" height="60" class="footer_images" loading="lazy">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+

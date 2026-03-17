@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Оформление заказа Vintage Food.">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Оформление — Vintage Food</title>
+</head>
+<body>
+    <a class="skip_link" href="#main">Перейти к содержимому</a>
+    <header class="page_header" id="page_header">
+        <nav class="navigation container">
+            <a href="index.html" class="logo_link" aria-label="На главную">
+                <img src="img/logo.png" alt="Vintage Food" class="logo" width="120" height="120">
+            </a>
+            <ul class="navigation_list">
+                <li><a href="index.html" class="navigation_title_header">Главная</a></li>
+                <li><a href="menu.html" class="navigation_title_header">Меню</a></li>
+                <li><a href="promos.html" class="navigation_title_header">Акции</a></li>
+                <li><a href="about.html" class="navigation_title_header">О нас</a></li>
+            </ul>
+            <a class="navigation_button navigation_button_link" href="cart.html" aria-label="Перейти в корзину">
+                <img src="img/basket.png" alt="" class="nav_menu_basket_img" width="34" height="34">
+                <span class="cart_badge" data-cart-count hidden>0</span>
+            </a>
+        </nav>
+        <div class="container container_page_header">
+            <div class="hero_text">
+                <p class="eyebrow">Оформление</p>
+                <h1 class="hero_title">Онлайн заказ</h1>
+                <p class="text_header_discount">Заполни данные доставки — и мы “примем” заказ (демо без бэкенда).</p>
+            </div>
+            <div class="hero_media" aria-hidden="true">
+                <img src="img/burger.png" alt="" width="642" height="600" loading="eager">
+            </div>
+        </div>
+    </header>
+
+    <main class="page_main" id="main">
+        <section class="container section" aria-labelledby="checkout_title">
+            <h2 class="section_title" id="checkout_title">Данные</h2>
+
+            <form class="checkout" data-checkout-form>
+                <div class="promo_card form_card">
+                    <label class="field">
+                        <span class="field_label">Имя</span>
+                        <input class="field_input" name="name" autocomplete="given-name" required minlength="2" placeholder="Иван">
+                    </label>
+
+                    <label class="field">
+                        <span class="field_label">Телефон</span>
+                        <input class="field_input" name="phone" autocomplete="tel" required placeholder="+7 (999) 123-45-67" inputmode="tel" pattern="^[+()\\d\\s-]{10,}$" title="Введите телефон, минимум 10 символов: цифры, пробелы, +, -, ()">
+                    </label>
+
+                    <label class="field">
+                        <span class="field_label">Адрес</span>
+                        <input class="field_input" name="address" autocomplete="street-address" required minlength="6" placeholder="Улица, дом, квартира">
+                    </label>
+
+                    <label class="field">
+                        <span class="field_label">Комментарий</span>
+                        <textarea class="field_input field_textarea" name="comment" rows="3" placeholder="Например: не звонить в домофон"></textarea>
+                    </label>
+                </div>
+
+                <div class="promo_card form_card">
+                    <p class="promo_title">Состав заказа</p>
+                    <div class="checkout_summary" data-checkout-summary></div>
+                    <p class="promo_text"><strong>Итого:</strong> <span data-cart-total>0</span> ₽</p>
+                    <button class="container_button_header" type="submit">Подтвердить заказ</button>
+                    <p class="form_note" data-checkout-note hidden></p>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="page_footer">
+        <div class="container footer_container">
+            <ul class="footer_list" aria-label="Полезные ссылки">
+                <li><a href="#" class="footer_title">Программа лояльности</a></li>
+                <li><a href="#" class="footer_title">Политика конфиденциальности</a></li>
+                <li><a href="#" class="footer_title">Договор оферты</a></li>
+            </ul>
+            <ul class="footer_page_text">
+                <li><p>ООО "Vintage Food"</p></li>
+                <li><p>&copy; Все права защищены.</p></li>
+            </ul>
+            <ul class="footer_contacts" aria-label="Соцсети">
+                <li>
+                    <a class="social_link" href="https://vk.com/gr1b_ok" target="_blank" rel="noopener noreferrer" aria-label="VK">
+                        <img src="img/vk.png" alt="" width="50" height="50" class="footer_images" loading="lazy">
+                    </a>
+                </li>
+                <li>
+                    <a class="social_link" href="https://telegram.com/artdg0" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                        <img src="img/telegram.png" alt="" width="60" height="60" class="footer_images" loading="lazy">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+
