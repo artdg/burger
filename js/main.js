@@ -52,6 +52,15 @@
     return { items, map };
   };
 
+  const CATEGORY_LABELS = {
+    burgers: "Бургеры",
+    chicken: "Блюда из курицы",
+    hot: "Горячие блюда",
+    snacks: "Закуски",
+    salads: "Салаты",
+    desserts: "Десерты"
+  };
+
   const updateCartBadges = () => {
     const cart = loadCart();
     const count = cartCount(cart);
@@ -111,15 +120,125 @@
         `;
         root.appendChild(card);
       });
-
-      root.addEventListener("click", (e) => {
-        const btn = e.target.closest("[data-add]");
-        if (!btn) return;
-        addToCart(btn.getAttribute("data-add"), 1);
-      });
     } catch {
       root.innerHTML = `<div class="promo_card"><p class="promo_title">Не удалось загрузить меню</p><p class="promo_text">Проверь, что сайт запущен через локальный сервер.</p></div>`;
     }
+  };
+
+  const renderCategoryProducts = async () => {
+    const roots = document.querySelectorAll("[data-category-products]");
+    if (roots.length === 0) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get("cat");
+
+    try {
+      const { items } = await fetchMenu();
+      const byCat = new Map();
+      items.forEach((it) => {
+        const key = it.category || "other";
+        if (!byCat.has(key)) byCat.set(key, []);
+        byCat.get(key).push(it);
+      });
+
+      roots.forEach((root) => {
+        const key = root.getAttribute("data-category-products");
+        const list = byCat.get(key) || [];
+        root.innerHTML = "";
+
+        list.forEach((it) => {
+          const card = document.createElement("article");
+          card.className = "product_card";
+          const img = it.image ? String(it.image) : "";
+          const desc = it.description ? String(it.description) : "";
+          card.innerHTML = `
+            ${img ? `<img class="product_image" src="${img}" alt="" loading="lazy">` : ""}
+            <h3 class="product_title">${it.title}</h3>
+            ${desc ? `<p class="product_desc">${desc}</p>` : ""}
+            <div class="product_meta">
+              <span>${it.weightG ? `${it.weightG} г` : ""}</span>
+              <span class="price">${rub(it.price)} ₽</span>
+            </div>
+            <div class="product_actions">
+              <button class="container_button_header" type="button" data-add="${it.id}">Добавить</button>
+              <a class="link_button" href="cart.html">Корзина</a>
+            </div>
+          `;
+          root.appendChild(card);
+        });
+      });
+
+      if (cat && CATEGORY_LABELS[cat]) {
+        // Если открыли menu.html?cat=...#cat-..., аккуратно проскроллим в секцию.
+        const el = document.getElementById(`cat-${cat}`);
+        el?.scrollIntoView?.({ behavior: "smooth", block: "start" });
+      }
+    } catch {
+      roots.forEach((root) => {
+        root.innerHTML = `<div class="promo_card"><p class="promo_title">Не удалось загрузить меню</p><p class="promo_text">Запусти сайт через локальный сервер.</p></div>`;
+      });
+    }
+  };
+
+  const initNavDropdown = () => {
+    const wrapper = document.querySelector("[data-nav-dropdown]");
+    if (!wrapper) return;
+
+    const btn = wrapper.querySelector("button[aria-controls]");
+    const panel = wrapper.querySelector(".nav_dropdown_panel");
+    if (!btn || !panel) return;
+
+    const open = () => {
+      panel.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+    };
+
+    const close = () => {
+      panel.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+    };
+
+    const toggle = () => {
+      if (panel.hidden) open();
+      else close();
+    };
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggle();
+    });
+
+    document.addEventListener("click", (e) => {
+      if (panel.hidden) return;
+      if (!wrapper.contains(e.target)) close();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (panel.hidden) return;
+      if (e.key === "Escape") {
+        close();
+        btn.focus();
+      }
+    });
+
+    wrapper.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" && panel.hidden) {
+        open();
+        const first = panel.querySelector("a");
+        first?.focus?.();
+      }
+    });
+
+    // закрыть при переходе по пункту
+    panel.addEventListener("click", () => close());
+  };
+
+  const bindAddToCart = () => {
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-add]");
+      if (!btn) return;
+      addToCart(btn.getAttribute("data-add"), 1);
+    });
   };
 
   const renderCart = async () => {
@@ -253,10 +372,10 @@
         createdAt: new Date().toISOString(),
         timeline: [
           { key: "created", label: "Заказ создан", at: Date.now() },
-          { key: "paid", label: "Оплата подтверждена", at: Date.now() + 1500 },
-          { key: "cooking", label: "Готовим", at: Date.now() + 4500 },
-          { key: "delivering", label: "В пути", at: Date.now() + 9000 },
-          { key: "done", label: "Доставлено", at: Date.now() + 14000 }
+          { key: "paid", label: "Оплата подтверждена", at: Date.now() + 3000 },
+          { key: "cooking", label: "Готовим", at: Date.now() + 8000 },
+          { key: "delivering", label: "В пути", at: Date.now() + 15000 },
+          { key: "done", label: "Доставлено", at: Date.now() + 25000 }
         ]
       };
 
@@ -387,6 +506,7 @@
     updateCartBadges();
     await Promise.all([
       renderProducts(),
+      renderCategoryProducts(),
       renderCart(),
       renderCheckoutSummary(),
       renderOrder(),
@@ -394,7 +514,9 @@
       updateTotals()
     ]);
     bindCartControls();
+    bindAddToCart();
     bindCheckoutForm();
+    initNavDropdown();
   };
 
   document.addEventListener("cart:changed", async () => {

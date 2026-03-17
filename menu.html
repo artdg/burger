@@ -23,6 +23,7 @@
                 <li><a href="menu.html" class="navigation_title_header" aria-current="page">Меню</a></li>
                 <li><a href="promos.html" class="navigation_title_header">Акции</a></li>
                 <li><a href="about.html" class="navigation_title_header">О нас</a></li>
+                <li><a href="orders.html" class="navigation_title_header">Заказы</a></li>
             </ul>
             <a class="navigation_button navigation_button_link" href="cart.html" aria-label="Перейти в корзину">
                 <img src="img/basket.png" alt="" class="nav_menu_basket_img" width="34" height="34">
@@ -46,36 +47,73 @@
             <h2 class="section_title" id="menu_title">Категории</h2>
             <ul class="catalog_list">
                 <li class="catalog_item">
-                    <img src="img/burgers.png" alt="Бургеры" loading="lazy">
-                    <p class="catalog_text">Бургеры</p>
+                    <a class="catalog_link" href="#cat-burgers">
+                        <img src="img/burgers.png" alt="Бургеры" loading="lazy">
+                        <p class="catalog_text">Бургеры</p>
+                    </a>
                 </li>
                 <li class="catalog_item">
-                    <img src="img/chicken_dishes.png" alt="Блюда из курицы" loading="lazy">
-                    <p class="catalog_text">Блюда из курицы</p>
+                    <a class="catalog_link" href="#cat-chicken">
+                        <img src="img/chicken_dishes.png" alt="Блюда из курицы" loading="lazy">
+                        <p class="catalog_text">Блюда из курицы</p>
+                    </a>
                 </li>
                 <li class="catalog_item">
-                    <img src="img/hot_dishes.png" alt="Горячие блюда" loading="lazy">
-                    <p class="catalog_text">Горячие блюда</p>
+                    <a class="catalog_link" href="#cat-hot">
+                        <img src="img/hot_dishes.png" alt="Горячие блюда" loading="lazy">
+                        <p class="catalog_text">Горячие блюда</p>
+                    </a>
                 </li>
                 <li class="catalog_item">
-                    <img src="img/snacks.png" alt="Закуски" loading="lazy">
-                    <p class="catalog_text">Закуски</p>
+                    <a class="catalog_link" href="#cat-snacks">
+                        <img src="img/snacks.png" alt="Закуски" loading="lazy">
+                        <p class="catalog_text">Закуски</p>
+                    </a>
                 </li>
                 <li class="catalog_item">
-                    <img src="img/salads.png" alt="Салаты" loading="lazy">
-                    <p class="catalog_text">Салаты</p>
+                    <a class="catalog_link" href="#cat-salads">
+                        <img src="img/salads.png" alt="Салаты" loading="lazy">
+                        <p class="catalog_text">Салаты</p>
+                    </a>
                 </li>
                 <li class="catalog_item">
-                    <img src="img/deserts.png" alt="Десерты" loading="lazy">
-                    <p class="catalog_text">Десерты</p>
+                    <a class="catalog_link" href="#cat-desserts">
+                        <img src="img/deserts.png" alt="Десерты" loading="lazy">
+                        <p class="catalog_text">Десерты</p>
+                    </a>
                 </li>
             </ul>
         </section>
 
-        <section class="container section" aria-labelledby="popular_title">
-            <h2 class="section_title" id="popular_title">Популярное</h2>
-            <div class="products_grid" data-products>
-                <!-- будет заполнено JS (data/menu.json) -->
+        <section class="container section" aria-label="Товары по категориям">
+            <div class="category_block" id="cat-burgers" data-category="burgers" aria-label="Бургеры">
+                <h2 class="section_title">Бургеры</h2>
+                <div class="products_grid" data-category-products="burgers"></div>
+            </div>
+
+            <div class="category_block" id="cat-chicken" data-category="chicken" aria-label="Блюда из курицы">
+                <h2 class="section_title">Блюда из курицы</h2>
+                <div class="products_grid" data-category-products="chicken"></div>
+            </div>
+
+            <div class="category_block" id="cat-hot" data-category="hot" aria-label="Горячие блюда">
+                <h2 class="section_title">Горячие блюда</h2>
+                <div class="products_grid" data-category-products="hot"></div>
+            </div>
+
+            <div class="category_block" id="cat-snacks" data-category="snacks" aria-label="Закуски">
+                <h2 class="section_title">Закуски</h2>
+                <div class="products_grid" data-category-products="snacks"></div>
+            </div>
+
+            <div class="category_block" id="cat-salads" data-category="salads" aria-label="Салаты">
+                <h2 class="section_title">Салаты</h2>
+                <div class="products_grid" data-category-products="salads"></div>
+            </div>
+
+            <div class="category_block" id="cat-desserts" data-category="desserts" aria-label="Десерты">
+                <h2 class="section_title">Десерты</h2>
+                <div class="products_grid" data-category-products="desserts"></div>
             </div>
         </section>
     </main>

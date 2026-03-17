@@ -20,7 +20,20 @@
             </a>
             <ul class="navigation_list">
                 <li><a href="index.html" class="navigation_title_header" aria-current="page">Главная</a></li>
-                <li><a href="menu.html" class="navigation_title_header">Меню</a></li>
+                <li class="nav_dropdown" data-nav-dropdown>
+                    <button class="navigation_title_header nav_dropdown_btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="nav_menu_dropdown">
+                        Меню
+                        <span class="nav_caret" aria-hidden="true">▾</span>
+                    </button>
+                    <div class="nav_dropdown_panel" id="nav_menu_dropdown" role="menu" hidden>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=burgers#cat-burgers">Бургеры</a>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=chicken#cat-chicken">Блюда из курицы</a>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=hot#cat-hot">Горячие блюда</a>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=snacks#cat-snacks">Закуски</a>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=salads#cat-salads">Салаты</a>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=desserts#cat-desserts">Десерты</a>
+                    </div>
+                </li>
                 <li><a href="promos.html" class="navigation_title_header">Акции</a></li>
                 <li><a href="about.html" class="navigation_title_header">О нас</a></li>
                 <li><a href="orders.html" class="navigation_title_header">Заказы</a></li>
@@ -45,6 +58,25 @@
         </div>
     </header>
     <main class="page_main" id="main">
+        <section class="container section" aria-labelledby="about_rest_title">
+            <h2 class="section_title" id="about_rest_title">Vintage Food — про вкус и скорость</h2>
+            <p class="section_text">Мы готовим бургеры и горячие блюда из свежих ингредиентов, держим стабильный вкус и доставляем быстро. Этот сайт — демонстрационный проект для портфолио: адаптив, доступность, корзина и оформление заказа без бэкенда.</p>
+            <div class="features">
+                <div class="feature_card">
+                    <p class="promo_title">30–45 минут</p>
+                    <p class="promo_text">Среднее время доставки по городу (демо‑данные).</p>
+                </div>
+                <div class="feature_card">
+                    <p class="promo_title">Свежие ингредиенты</p>
+                    <p class="promo_text">Ставка на простые, понятные продукты.</p>
+                </div>
+                <div class="feature_card">
+                    <p class="promo_title">Удобный заказ</p>
+                    <p class="promo_text">Меню → корзина → checkout → статус заказа.</p>
+                </div>
+            </div>
+        </section>
+
         <section class="container section" aria-labelledby="next_title">
             <h2 class="section_title" id="next_title">Дальше по сайту</h2>
             <div class="promo_card">
