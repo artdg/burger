@@ -613,6 +613,85 @@ img {
     gap: 12px;
 }
 
+.cart_row {
+    align-items: center;
+    gap: 14px;
+}
+
+.cart_left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.cart_thumb {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.cart_info {
+    min-width: 0;
+}
+
+.cart_title {
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.cart_meta {
+    margin-top: 2px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.cart_right {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart_qty {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.cart_qty_btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+}
+
+.cart_qty_value {
+    min-width: 18px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.cart_price {
+    font-weight: 900;
+    min-width: 86px;
+    text-align: right;
+}
+
+@media (max-width: 520px) {
+    .cart_row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cart_right {
+        justify-content: space-between;
+    }
+}
+
 .timeline_row {
     display: flex;
     justify-content: space-between;
@@ -647,6 +726,70 @@ img {
 .status_cooking { background: rgba(255, 170, 0, 0.18); }
 .status_delivering { background: rgba(0, 120, 255, 0.18); }
 .status_done { background: rgba(46, 160, 67, 0.22); }
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    width: min(560px, calc(100% - 24px));
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.toast_panel {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 12px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+    backdrop-filter: blur(10px);
+}
+
+.toast_text {
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0.95;
+}
+
+.toast_actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toast_btn {
+    margin-top: 0;
+    padding: 10px 14px;
+    font-size: 14px;
+    box-shadow: none;
+}
+
+.toast_close {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+}
+
+.toast[hidden] {
+    display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .toast_panel {
+        animation: toastIn 140ms ease-out;
+    }
+}
+
+@keyframes toastIn {
+    from { transform: translateY(6px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 
 .modal[hidden] {
     display: none;

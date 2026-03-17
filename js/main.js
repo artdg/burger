@@ -246,7 +246,74 @@
       const btn = e.target.closest("[data-add]");
       if (!btn) return;
       addToCart(btn.getAttribute("data-add"), 1);
+      showToast("Добавлено в корзину", { actionHref: "cart.html", actionLabel: "В корзину" });
     });
+  };
+
+  let toastTimer = null;
+  const ensureToast = () => {
+    let root = document.querySelector("[data-toast]");
+    if (root) return root;
+
+    root = document.createElement("div");
+    root.className = "toast";
+    root.hidden = true;
+    root.setAttribute("data-toast", "");
+    root.setAttribute("role", "status");
+    root.setAttribute("aria-live", "polite");
+    root.innerHTML = `
+      <div class="toast_panel">
+        <div class="toast_text" data-toast-text></div>
+        <div class="toast_actions">
+          <a class="container_button_header toast_btn" data-toast-action hidden></a>
+          <button class="icon_button toast_close" type="button" data-toast-close aria-label="Закрыть">×</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(root);
+
+    root.addEventListener("click", (e) => {
+      const close = e.target.closest("[data-toast-close]");
+      if (close) hideToast();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (root.hidden) return;
+      if (e.key === "Escape") hideToast();
+    });
+
+    return root;
+  };
+
+  const showToast = (text, opts = {}) => {
+    const root = ensureToast();
+    const textEl = root.querySelector("[data-toast-text]");
+    const actionEl = root.querySelector("[data-toast-action]");
+    if (textEl) textEl.textContent = text;
+
+    const actionHref = opts.actionHref || "";
+    const actionLabel = opts.actionLabel || "";
+    if (actionEl && actionHref && actionLabel) {
+      actionEl.hidden = false;
+      actionEl.setAttribute("href", actionHref);
+      actionEl.textContent = actionLabel;
+    } else if (actionEl) {
+      actionEl.hidden = true;
+    }
+
+    root.hidden = false;
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => hideToast(), 2400);
+  };
+
+  const hideToast = () => {
+    const root = document.querySelector("[data-toast]");
+    if (!root) return;
+    root.hidden = true;
+    if (toastTimer) {
+      clearTimeout(toastTimer);
+      toastTimer = null;
+    }
   };
 
   const renderCart = async () => {
@@ -277,14 +344,25 @@
         if (!item) return;
 
         const row = document.createElement("div");
-        row.className = "summary_row";
+        row.className = "summary_row cart_row";
+        const img = item.image ? String(item.image) : "";
         row.innerHTML = `
-          <span><strong>${item.title}</strong> × ${qty}</span>
-          <span>
-            <button class="icon_button" type="button" data-dec="${id}" aria-label="Уменьшить">−</button>
-            <button class="icon_button" type="button" data-inc="${id}" aria-label="Увеличить">+</button>
+          <div class="cart_left">
+            ${img ? `<img class="cart_thumb" src="${img}" alt="" loading="lazy">` : ""}
+            <div class="cart_info">
+              <div class="cart_title"><strong>${item.title}</strong></div>
+              <div class="cart_meta">${item.weightG ? `${item.weightG} г` : ""}</div>
+            </div>
+          </div>
+          <div class="cart_right">
+            <div class="cart_qty" aria-label="Количество">
+              <button class="icon_button cart_qty_btn" type="button" data-dec="${id}" aria-label="Уменьшить">−</button>
+              <span class="cart_qty_value" aria-label="Текущее количество">${qty}</span>
+              <button class="icon_button cart_qty_btn" type="button" data-inc="${id}" aria-label="Увеличить">+</button>
+            </div>
+            <div class="cart_price" aria-label="Цена">${rub(item.price * qty)} ₽</div>
             <button class="icon_button" type="button" data-del="${id}" aria-label="Удалить">×</button>
-          </span>
+          </div>
         `;
         lines.appendChild(row);
       });

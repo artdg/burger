@@ -20,7 +20,20 @@
             </a>
             <ul class="navigation_list">
                 <li><a href="index.html" class="navigation_title_header">Главная</a></li>
-                <li><a href="menu.html" class="navigation_title_header">Меню</a></li>
+                <li class="nav_dropdown" data-nav-dropdown>
+                    <button class="navigation_title_header nav_dropdown_btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="nav_menu_dropdown">
+                        Меню
+                        <span class="nav_caret" aria-hidden="true">▾</span>
+                    </button>
+                    <div class="nav_dropdown_panel" id="nav_menu_dropdown" role="menu" hidden>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=burgers#cat-burgers">Бургеры</a>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=chicken#cat-chicken">Блюда из курицы</a>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=hot#cat-hot">Горячие блюда</a>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=snacks#cat-snacks">Закуски</a>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=salads#cat-salads">Салаты</a>
+                        <a class="nav_dropdown_item" role="menuitem" href="menu.html?cat=desserts#cat-desserts">Десерты</a>
+                    </div>
+                </li>
                 <li><a href="promos.html" class="navigation_title_header">Акции</a></li>
                 <li><a href="about.html" class="navigation_title_header">О нас</a></li>
             </ul>
