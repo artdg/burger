@@ -1,4 +1,4 @@
-# Vintage Food — multipage demo with online orders
+# Vintage Food — по шаблону из Figma
 
 Демонстрационный многостраничный сайт бургерной для портфолио: адаптив, доступность, меню из JSON, корзина в `localStorage` и оформление заказа (демо без бэкенда).
 
